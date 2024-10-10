@@ -12,7 +12,7 @@
 	<artifactId>ssb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring Server Boilerplate</name>
-	<description>Headstart to a spring server. Don&apos;t forget to clean un-needed dependencies</description>
+	<description>Head start to a spring server. Don't forget to clean un-needed dependencies</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -110,10 +110,10 @@
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-mongodb</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-security</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.integration</groupId>-->
+<!--			<artifactId>spring-integration-security</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
