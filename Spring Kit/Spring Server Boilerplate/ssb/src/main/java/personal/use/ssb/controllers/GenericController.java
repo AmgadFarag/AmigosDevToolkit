@@ -1,15 +1,14 @@
 package personal.use.ssb.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import personal.use.ssb.services.IGenericService;
 
-@Controller
+@RestController("api/")
 public abstract class GenericController {
+    Logger logger = LoggerFactory.getLogger(GenericController.class);
 
     private final IGenericService genericService;
 
@@ -17,4 +16,10 @@ public abstract class GenericController {
         this.genericService = service;
     }
 
+    // ----------------------------------------------------------------
+
+    @GetMapping("/")
+    public ResponseEntity<String> initCall() {
+        return ResponseEntity.ok("Hello World");
+    }
 }
