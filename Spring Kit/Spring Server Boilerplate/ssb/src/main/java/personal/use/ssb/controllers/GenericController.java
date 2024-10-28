@@ -1,20 +1,21 @@
 package personal.use.ssb.controllers;
 
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import personal.use.ssb.services.IGenericService;
 
-@RestController("api/")
-public abstract class GenericController {
+@RestController
+@RequestMapping("/api")
+@NoArgsConstructor
+public class GenericController {
     Logger logger = LoggerFactory.getLogger(GenericController.class);
 
-    private final IGenericService genericService;
-
-    public GenericController(IGenericService service) {
-        this.genericService = service;
-    }
+    @Autowired
+    private IGenericService genericService;
 
     // ----------------------------------------------------------------
 
