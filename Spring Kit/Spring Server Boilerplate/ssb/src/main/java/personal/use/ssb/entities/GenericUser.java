@@ -9,8 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public abstract class GenericUser extends GenericEntity {
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
     private Boolean active;
+
+    private String username;
+
+    private String passwordEncrypt;
+
+    private RoleType role;
 
 }
