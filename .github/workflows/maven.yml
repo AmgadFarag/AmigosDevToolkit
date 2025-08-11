@@ -11,98 +11,37 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+  
 jobs:
   build:
-
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4 # Marketplace action
+
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    - name: Unit Tests
+      run: |
+        cd "Spring Kit/Spring Playground/ssb"
+        mvn -B test --file pom.xml
+    
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
-
-
-    - name: Upload a Build Artifact
-    uses: actions/upload-artifact@v4.6.2
-    with:
-      # Artifact name
-      name: # optional, default is artifact
-      # A file, directory or wildcard pattern that describes what to upload
-      path: 
-      # The desired behavior if no files are found using the provided path.
-  Available Options:
-    warn: Output a warning but do not fail the action
-    error: Fail the action with an error message
-    ignore: Do not output any warnings or errors, the action does not fail
-  
-      if-no-files-found: # optional, default is warn
-      # Duration after which artifact will expire in days. 0 means using default retention.
-  Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
-  
-      retention-days: # optional
-      # The level of compression for Zlib to be applied to the artifact archive. The value can range from 0 to 9: - 0: No compression - 1: Best speed - 6: Default compression (same as GNU Gzip) - 9: Best compression Higher levels will result in better compression, but will take longer to complete. For large files that are not easily compressed, a value of 0 is recommended for significantly faster uploads.
-  
-      compression-level: # optional, default is 6
-      # If true, an artifact with a matching name will be deleted before a new one is uploaded. If false, the action will fail if an artifact for the given name already exists. Does not fail if the artifact does not exist.
-  
-      overwrite: # optional, default is false
-      # If true, hidden files will be included in the artifact. If false, hidden files will be excluded from the artifact.
-  
-      include-hidden-files: # optional, default is false
+      run: |
+        cd "Spring Kit/Spring Playground/ssb"
+        mvn clean
+        mvn -B package --file pom.xml
 
 
 
-    - name: SMTP Notifier
-    # You may pin to the exact commit or the version.
-    # uses: JaSiLez/smtp-notifier@3895e7955e4c52051ca99b931490f71fa1903a99
-    uses: JaSiLez/smtp-notifier@v1.1.3
-    with:
-      # SMTP server address
-      server_address: 
-      # SMTP server port
-      server_port: 
-      # Authenticate as this user to SMTP server
-      username: # optional
-      # Authenticate with this password to SMTP server
-      password: # optional
-      # Subject of mail message
-      subject: 
-      # Recipients mail addresses (separated with comma)
-      to: 
-      # Full name of mail sender (might be with an email address specified in <>)
-      from: 
-      # Whether this connection use TLS (default is true if server_port is 465)
-      secure: # optional
-      # Body of mail message (might be a filename prefixed with file:// to read from)
-      body: # optional
-      # HTML body of mail message (might be a filename prefixed with file:// to read from)
-      html_body: # optional
-      # Carbon copy recipients (separated with comma)
-      cc: # optional
-      # Blind carbon copy recipients (separated with comma)
-      bcc: # optional
-      # An email address that will appear on the Reply-To field
-      reply_to: # optional
-      # The Message-ID this message is replying to
-      in_reply_to: # optional
-      # Allow unsigned/invalid certificates
-      ignore_cert: # optional
-      # Convert body from Markdown to HTML (set content_type input as text/html too)
-      convert_markdown: # optional
-      # Files that will be added to mail message attachments (separated with comma)
-      attachments: # optional
-      # Set Priority level for the mail message to 'high', 'normal' (default) or 'low'
-      priority: # optional
+
+
+
+
