@@ -40,12 +40,13 @@ jobs:
         mvn -B package --file pom.xml
 
     - name: Build Image
-      uses: actions/build-push-action@v2
+      uses: docker/build-push-action@v2
       with:
         context: .
         dockerfile: Dockerfile
         push: false
-        tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:$(date-'%Y-%m-%d%H-%M-%S')
+        # tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:$(date'%Y%m%d%H%M%S')
+        tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:latest
 
 
 
