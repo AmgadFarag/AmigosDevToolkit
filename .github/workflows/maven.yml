@@ -45,7 +45,7 @@ jobs:
         context: .
         dockerfile: Dockerfile
         push: false
-        tags: ${{secrests.DOKER_USER_NAME}}/AmigosDevToolkit:$(date-'%Y-%m-%d%H-%M-%S')
+        tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:$(date-'%Y-%m-%d%H-%M-%S')
 
 
 
