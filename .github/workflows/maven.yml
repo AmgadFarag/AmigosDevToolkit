@@ -28,10 +28,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Unit Tests
-      run: |
-        cd "Spring Kit/Spring Playground/ssb"
-        mvn -B test --file pom.xml
+    # - name: Unit Tests
+    #   run: |
+    #     cd "Spring Kit/Spring Playground/ssb"
+    #     mvn -B test --file pom.xml
     
     - name: Build with Maven
       run: |
@@ -39,7 +39,13 @@ jobs:
         mvn clean
         mvn -B package --file pom.xml
 
-
+    - name: Build Image
+      uses: actions/build-push-action@v2
+      with:
+        context: .
+        dockerfile: Dockerfile
+        push: false
+        tags: ${{secrests.DOKER_USER_NAME}}/AmigosDevToolkit:$(date-'%Y-%m-%d%H-%M-%S')
 
 
 
