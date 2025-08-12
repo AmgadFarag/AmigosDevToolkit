@@ -1,0 +1,24 @@
+name: Pipeline Entrypoint
+
+on:
+  push:
+    branches:
+      ['main']
+
+jobs:
+  my_first_job:
+    name: Custom builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Custom build-image action
+        uses: ./.github/build-image-pipeline
+
+
+  email_job:
+    name: Custom SMTP email
+    runs-on: ubuntu-latest
+    needs: my_first_job
+    steps:
+      - name: Custom send email
+        uses: ./.github/email-pipeline
+      
