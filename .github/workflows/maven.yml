@@ -48,7 +48,10 @@ jobs:
         # tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:$(date'%Y%m%d%H%M%S')
         tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:latest
 
+    # - name: Deploy to production
+    #   run: ./deploy.sh
 
-
+env:
+  API_KEY: ${{ secrets.API_KEY }}
 
 
