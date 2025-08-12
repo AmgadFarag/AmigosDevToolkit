@@ -1,0 +1,5 @@
+name: Email on Completion
+
+on:
+  push:
+    branches: [ "master" ]
