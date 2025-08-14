@@ -39,5 +39,8 @@ jobs:
         mvn clean
         mvn -B package --file pom.xml
 
-    - name: Call Next Workflow
-      uses: ./.github/workflows/deploy-pipeline.yml
+  deploy_job:
+    name: Call Next Workflow
+    needs: build_job
+    uses: ./.github/workflows/deploy-pipeline.yml
+
