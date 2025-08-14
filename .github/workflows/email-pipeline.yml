@@ -1,43 +1,44 @@
 name: Email on Completion
 
 on:
-  push:
-    branches: [ "master" ]
+  workflow_call:
 
 jobs:
   send_email:
     name: Send Email
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    # outputs:
+      # output1: ${{ some_variable }}
     steps:
-    
+
+      - uses: actions/checkout@v4
+      # --------
       - name: Prepare env
-        if: ${{ env.IGNORE_PIPELINE == 'false' }}
+        # if: ${{ env.IGNORE_PIPELINE == 'false' }}
         run: |
           python -m venv venv
-          pip install -r requirements.txt
+          echo Assume "pip install -r requirements.txt"
           popd
-
+      # --------
+      
       - name: Email Script
-        if: ${{ env.IGNORE_PIPELINE == 'false' }}
+        # if: ${{ env.IGNORE_PIPELINE == 'false' }}
         run: |
           # Body file.html
-          cat <<EOF> body.html
-          <p>Some html text</p>
-          EOF
+          # cat <<EOF> body.html
+          # <p>Some html text</p>
+          # EOF
 
-          # Call py script
-          python send_email.py \
-            -s "$(smtpServer)" \
-            -u "$(smtpUser)" \
-            --content "$(cat body.html)"
+          # Call a py script
+          # cd demo
+          # python send_email.py
 
           popd
-
+      # --------
 
       - name: Clean up
         if: always()
         run: |
-          git config --unset-all --global user.email
-          git config --unset-all --global user.name
-
-            
+          # git config --unset-all --global user.email
+          # git config --unset-all --global user.name
+          echo Cleanup Complete
