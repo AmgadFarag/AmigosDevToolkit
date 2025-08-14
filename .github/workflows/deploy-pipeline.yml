@@ -1,0 +1,32 @@
+name: Deploy Pipeline Demo
+
+on:
+  workflow_call:
+  # workflow_dispatch:
+
+jobs:
+ 
+  deploy_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Build Image
+        run: |
+          echo Assume I ran a Docker build command here!
+          echo Moving on ...
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: .
+    #     dockerfile: Dockerfile
+    #     push: false
+    #     # tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:$(date'%Y%m%d%H%M%S')
+    #     tags: ${{secrets.DOCKER_USER_NAME}}/AmigosDevToolkit:latest
+
+      - name: Deploy to production
+        run: |
+          # ./deploy.sh
+          echo Assume I deployed to Docker Hub here!
+          echo Moving on ...
+
